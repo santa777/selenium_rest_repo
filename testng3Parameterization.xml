@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SampleSuite">
+
+    <test name="SeleniumMavenTests">
+        <parameter name="browser" value="Chrome"/>
+        <parameter name="env" value="Production"/>
+        <classes>
+            <class name="com.practice.Interview.tests.LinkedLoginTest"/>
+        </classes>
+    </test>
+
+</suite>
