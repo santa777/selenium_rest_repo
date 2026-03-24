@@ -15,7 +15,6 @@ public class DropDownTestAttempt2ToDo {
 	WebDriver driver;
 	@BeforeMethod
 	public void setUp()	{
-		// System.setProperty("webdriver.chrome.driver", "C:\\Users\\Pallavi\\Desktop\\Java\\Selenium\\Drivers\\chromedriver.exe");
 		driver = new ChromeDriver();
 	}
 	

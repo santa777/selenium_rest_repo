@@ -1,17 +1,18 @@
 package com.practice.PracticeAttempt2;
 
-import org.openqa.selenium.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 
-import java.util.List;
-
-
-public class WebTableTest {
+public class WebTableTestPractice {
 	static WebDriver driver;
 
 	@BeforeMethod
@@ -26,8 +27,8 @@ public class WebTableTest {
 	}
 
 	@Test
-	public void webTableExcerciseCountRows() {
-		driver.get("http://demo.guru99.com/test/web-table-element.php");
+	public void testWebTableExcerciseCountRows() {
+		driver.get("http://demo.guru99.com/test/web-table-element.php");	
 		List<WebElement> tableRows = driver.findElements((By.xpath("//table[@class='dataTable']//tr")));
 		System.out.println("No of table rows " + tableRows.size());
 		List<WebElement> tableColumns = driver.findElements((By.xpath("//table[@class='dataTable']//tbody/tr[1]//td")));
