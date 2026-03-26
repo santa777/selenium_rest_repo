@@ -48,9 +48,26 @@ public class MultiWindowsTest {
 		driver.quit();
     }
 
+	//Typical old logic to deal with child window having control over parent window.
+    private void switchToChildWindowGivenParentWindow(String parentWindow) {
+        // Get all window handles
+        Set<String> handles = driver.getWindowHandles();
+
+        // Loop through handles
+        for (String handle : handles) {
+            if (!handle.equals(parentWindow)) {
+                // Switch to child window
+                driver.switchTo().window(handle);
+                break;
+            }
+        }
+        return; 
+    }
+
     @AfterMethod
     private void tearDown() {
-
         driver.quit();
     }
+
+
 }

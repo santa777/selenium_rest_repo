@@ -5,16 +5,13 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import com.practice.SeleniumMavenTests.Pages.ChkBoxRadioButtonPage;
-
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
 
 public class BaseTest {
 	public static ChkBoxRadioButtonPage chkBoxRadioButtonPage = new ChkBoxRadioButtonPage().getInstance();
@@ -45,8 +42,9 @@ public class BaseTest {
 	@BeforeSuite
 	public void beforeSuite() {
 		//System.setProperty("webdriver.gecko.driver", "C:\\Users\\Pallavi\\Desktop\\Java\\Selenium\\Drivers\\geckodriver.exe");
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Pallavi\\Desktop\\Java\\Selenium\\Drivers\\chromedriver.exe");
+		// System.setProperty("webdriver.chrome.driver",
+		// 		"C:\\Users\\Pallavi\\Desktop\\Java\\Selenium\\Drivers\\chromedriver.exe");
+		System.out.println("Skipping setting up driver path with Selenium 4");
 	}
 
 	@AfterSuite
