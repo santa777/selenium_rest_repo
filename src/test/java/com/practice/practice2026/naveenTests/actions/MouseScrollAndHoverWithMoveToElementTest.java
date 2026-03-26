@@ -17,7 +17,7 @@ import org.testng.asserts.SoftAssert;
 import com.practice.Interview.pages.AmzHelpPage;
 
 
-public class ActionMouseAction {
+public class MouseScrollAndHoverWithMoveToElementTest {
 
     WebDriver driver;
     SoftAssert softAssert;
