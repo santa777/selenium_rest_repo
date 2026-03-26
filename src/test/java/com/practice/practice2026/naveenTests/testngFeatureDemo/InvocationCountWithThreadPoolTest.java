@@ -5,12 +5,12 @@ import org.testng.annotations.Test;
 public class InvocationCountWithThreadPoolTest {
     int executionAttempt = 1;
 
-    // In TestNG, invocationCount is allows you to run sample test multiple times
-    /*
-    Repeating tests to check stability
-    Simple load testing
-    Re-running flaky tests without retry logic 
-    */
+    // Runs 3 times, optionally in parallel threads
+    // | Attribute         | Purpose                                                              |
+    // | ----------------- | -------------------------------------------------------------------- |
+    // | `invocationCount` | Number of times this test should be executed (here **3 times**).     |
+    // | `threadPoolSize`  | Number of threads to run this test in parallel (here **2 threads**). |
+
     @Test(invocationCount = 3,  threadPoolSize = 2)
     public void invocationCountValidationTest() {
         System.out.println("Executing test on thread: " + Thread.currentThread().getId() + " Exec Attempt : " + executionAttempt++);

@@ -21,8 +21,9 @@ import org.testng.annotations.Test;
 
 public class W3CComplianceTest {
 
+    // TO_DO : Not yet tested
     @Test(enabled=false)
-    public static void main(String[] args) {
+    public static void testW3CComplianceTest() {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
 
