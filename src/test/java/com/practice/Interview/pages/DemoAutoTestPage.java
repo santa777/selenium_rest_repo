@@ -1,42 +1,59 @@
-    package com.practice.Interview.pages;
+package com.practice.Interview.pages;
 
-    import org.openqa.selenium.WebDriver;
-    import org.openqa.selenium.WebElement;
-    import org.openqa.selenium.support.FindBy;
-    import org.openqa.selenium.support.PageFactory;
+import java.util.List;
 
-    public class DemoAutoTestPage  {
-        WebDriver driver;
-        @FindBy(xpath = "//input[@placeholder='First Name']")
-        public WebElement firstNameElement;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-        @FindBy(xpath = "//input[@placeholder='Last Name']")
-        public WebElement lastNameElement;
+public class DemoAutoTestPage {
 
-        @FindBy(xpath = "//textarea[@ng-model='Adress']")   
-        public WebElement addressElement;
+    WebDriver driver;
+    @FindBy(xpath = "//input[@placeholder='First Name']")
+    public WebElement firstNameElement;
 
-        @FindBy(css = "input[type='email']")
-        public WebElement emailTxtBox;
+    @FindBy(xpath = "//input[@placeholder='Last Name']")
+    public WebElement lastNameElement;
 
-        @FindBy(css = "input[type='tel']")
-        public WebElement phoneNumberTxtBox;
+    @FindBy(xpath = "//textarea[@ng-model='Adress']")
+    public WebElement addressElement;
 
-        @FindBy(css = "input[value='Male']")
-        public WebElement maleGenenderRadioButton;
+    @FindBy(css = "input[type='email']")
+    public WebElement emailTxtBox;
 
-        @FindBy(css = "input[value='Female']")
-        public WebElement femaleGenenderRadioButton;
+    @FindBy(css = "input[type='tel']")
+    public WebElement phoneNumberTxtBox;
 
-        @FindBy(css= "button[type='submit']")
-        public WebElement submitButton;
+    @FindBy(css = "input[value='Male']")
+    public WebElement maleGenenderRadioButton;
 
-        @FindBy(css = "button[value='Refresh']")
-        public WebElement refreshButton;
+    @FindBy(css = "input[value='Female']")
+    public WebElement femaleGenenderRadioButton;
 
-        
-        public DemoAutoTestPage(WebDriver brosWebDriver) {
-            this.driver = brosWebDriver;
-            PageFactory.initElements(driver, this);
-        }
+    @FindBy(css = "button[type='submit']")
+    public WebElement submitButton;
+
+    @FindBy(css = "button[value='Refresh']")
+    public WebElement refreshButton;
+
+    @FindBy(id = "[id='select2-country-container']")
+    public WebElement countryDropDown;
+
+    @FindBy(id = "msdd")
+    public WebElement languageDropDown;
+
+    @FindBy(css = "span[class='ui-icon ui-icon-close']")
+    public WebElement langCloseButton;
+
+    @FindBy(xpath = "//div[@class='ui-autocomplete-multiselect-item']")
+    public List<WebElement> selectedLanguages;
+
+    @FindBy(id = "Skills")
+    public WebElement skilsSelecElement;
+
+    public DemoAutoTestPage(WebDriver brosWebDriver) {
+        this.driver = brosWebDriver;
+        PageFactory.initElements(driver, this);
     }
+}
