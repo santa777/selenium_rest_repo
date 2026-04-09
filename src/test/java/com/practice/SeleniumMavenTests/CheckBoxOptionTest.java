@@ -70,15 +70,6 @@ public class CheckBoxOptionTest extends BaseTest	{
 //		driver.quit();
 //	}
 //	
-	@Test()
-	private void testRadioButton1() throws InterruptedException	{
-		driver.get("http://demo.guru99.com/test/radio.html");
-	}
-	
-	@Test()
-	private void testRadioButton2() throws InterruptedException	{
-		driver.get("http://demo.guru99.com/test/radio.html");
-	}
 	@AfterMethod
 	private  void afterMethod()	{
 		driver.quit();

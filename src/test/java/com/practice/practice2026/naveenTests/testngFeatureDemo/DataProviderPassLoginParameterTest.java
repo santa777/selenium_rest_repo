@@ -22,7 +22,7 @@ public class DataProviderPassLoginParameterTest {
     public Object[][] getCookies() {
         Map<String, String> map = new HashMap<String, String>();
         map.put("firstCookieName", "firstCookieValue");
-        map.put("secondCookie", "secon");
+        map.put("secondCookie", "secondCookieValue");
         return new Object[][]{
             {map}
         };

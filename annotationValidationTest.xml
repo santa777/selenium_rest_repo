@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="SampleSuite">
-	<test name="SeleniumMavenTests">
+	<test name="SeleniumMavenAnnotationTests">
 		<classes>
 			<class name="com.practice.SeleniumMavenTests.TestngAnnotationFlowVerificationTest1" />
 			<class name="com.practice.SeleniumMavenTests.TestngAnnotationFlowVerificationTest2" />

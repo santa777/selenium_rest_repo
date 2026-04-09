@@ -20,8 +20,6 @@ public class JavaScriptExecutorTest {
 	WebDriver driver;
 	@BeforeMethod
 	private void beforeMethod() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\Pallavi\\Desktop\\Java\\Selenium\\Drivers\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();

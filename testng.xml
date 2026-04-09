@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="SampleSuite">
 
-	<test name="SeleniumMavenTests">
+	<test name="SeleniumDataProviderTest">
 		<parameter name="browser" value="chrome" />
 		<parameter name="env" value="Production" />
 		<classes>
