@@ -11,7 +11,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import com.practice.Interview.pages.DemoAutoTestPage;
 
 public class DropDownValidationTest {
