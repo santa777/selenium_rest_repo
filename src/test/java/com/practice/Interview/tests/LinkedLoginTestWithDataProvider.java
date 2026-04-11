@@ -21,7 +21,6 @@ public class LinkedLoginTestWithDataProvider extends TestBase {
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-
 	}
 
 	/*
