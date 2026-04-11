@@ -2,13 +2,15 @@ package com.practice.Interview.helper;
 
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.AfterMethod;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
+
 import com.practice.Interview.util.ConfigUtil;
 
 public class TestBase {
@@ -28,12 +30,17 @@ public class TestBase {
 	}
 
 	public WebDriver getDriver()	{
+	
 		switch(browser.toLowerCase()) {
 		case "chrome" : 
-			driver = new ChromeDriver();
+			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.addArguments("--headless");
+			driver = new ChromeDriver(chromeOptions);
 			break;
 		case "firefox" :
-			driver = new FirefoxDriver();
+			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			firefoxOptions.addArguments("--headless");
+			driver = new FirefoxDriver(firefoxOptions);
 			break;
 		default :
 			driver = new ChromeDriver();

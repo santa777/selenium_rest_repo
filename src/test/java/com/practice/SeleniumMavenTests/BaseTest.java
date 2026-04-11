@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
@@ -22,7 +23,9 @@ public class BaseTest {
 	}
 	
 	public WebDriver getWebDriver()	{
-		WebDriver driver = new ChromeDriver();
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--headless=new");
+		WebDriver driver = new ChromeDriver(chromeOptions);
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 		return driver;
 	}

@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Testng2Suite" parallel="methods">
+<suite name="Testng2 Automation Suite" parallel="methods">
 
-	<test name="SeleniumMavenTests">
+	<test name="Check Box Test">
 		<parameter name="browser" value="Chrome" />
 		<parameter name="env" value="Production" />
 		<classes>
 			<class name="com.practice.SeleniumMavenTests.CheckBoxOptionTest" />
 		</classes>
 	</test>
+
+	<test name="SeleniumDataProviderTest">
+		<parameter name="browser" value="Chrome" />
+		<parameter name="env" value="Production" />
+		<classes>
+			<class name="com.practice.Interview.tests.LinkedLoginTestWithDataProvider" />
+		</classes>
+	</test>
+
 
 </suite>
