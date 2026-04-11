@@ -42,7 +42,7 @@ jobs:
 
       # STEP 3: Execute Tests (Ensure paths use / and not \\)
       - name: Execute Tests
-        run: mvn clean test
+        run: mvn clean test -DtestNgFile=testng2.xml
         continue-on-error: true
 
       # STEP 4: Generate Report (This merges new results with old history)
