@@ -3,7 +3,7 @@ name: Selenium CI - Master
 on:
   workflow_dispatch:
   push:
-    branches: [ master, main ]
+    branches: [ master ]
 
 permissions:
   contents: write
@@ -23,21 +23,29 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      # NEW: This loads the history from your existing gh-pages branch 
-      # so Allure can calculate trends (Pass/Fail history)
+      # STEP 1: Download existing history from gh-pages
       - name: Load Allure history
         uses: actions/checkout@v4
         if: always()
         continue-on-error: true
         with:
           ref: gh-pages
-          path: gh-pages
+          path: gh-pages-dir # Download into a separate folder
 
+      # STEP 2: Copy history to the results folder so Allure sees it
+      - name: Prepare Allure results
+        run: |
+          mkdir -p target/allure-results
+          if [ -d "gh-pages-dir/history" ]; then
+            cp -r gh-pages-dir/history target/allure-results/
+          fi
+
+      # STEP 3: Execute Tests (Ensure paths use / and not \\)
       - name: Execute Tests
-        # Selenium 4 Manager automatically handles the drivers here
         run: mvn clean test
         continue-on-error: true
 
+      # STEP 4: Generate Report (This merges new results with old history)
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
         if: always()
@@ -46,8 +54,9 @@ jobs:
           gh_pages: gh-pages
           allure_report: allure-report
           allure_history: allure-history
-          keep_reports: 20 # Optional: Keeps the last 20 runs to save space
+          keep_reports: 30 
 
+      # STEP 5: Deploy (Remove force_orphan so it appends instead of wipes)
       - name: Deploy to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
@@ -55,3 +64,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
+          # force_orphan: false (Default is false, which keeps history)
