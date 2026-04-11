@@ -3,7 +3,7 @@
 <suite name="SampleSuite">
 
 	<test name="SeleniumDataProviderTest">
-		<parameter name="browser" value="chrome" />
+		<parameter name="browser" value="Chrome" />
 		<parameter name="env" value="Production" />
 		<classes>
 			<class name="com.practice.Interview.Tests.LinkedLoginTestWithDataProvider" />
