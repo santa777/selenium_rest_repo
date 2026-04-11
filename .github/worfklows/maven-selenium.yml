@@ -46,7 +46,7 @@ jobs:
           gh_pages: gh-pages
           allure_report: allure-report
           allure_history: allure-history
-          keep_reports: 10 # Optional: Keeps the last 10 runs to save space
+          keep_reports: 20 # Optional: Keeps the last 20 runs to save space
 
       - name: Deploy to GitHub Pages
         if: always()
