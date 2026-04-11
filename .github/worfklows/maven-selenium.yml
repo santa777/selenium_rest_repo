@@ -1,10 +1,9 @@
 name: Selenium CI - Master
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches: [ master, main ]
 
 permissions:
   contents: write
@@ -24,8 +23,18 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      # NEW: This loads the history from your existing gh-pages branch 
+      # so Allure can calculate trends (Pass/Fail history)
+      - name: Load Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
       - name: Execute Tests
-        # This triggers the maven-surefire-plugin using your XML
+        # Selenium 4 Manager automatically handles the drivers here
         run: mvn clean test
         continue-on-error: true
 
@@ -37,6 +46,7 @@ jobs:
           gh_pages: gh-pages
           allure_report: allure-report
           allure_history: allure-history
+          keep_reports: 10 # Optional: Keeps the last 10 runs to save space
 
       - name: Deploy to GitHub Pages
         if: always()
