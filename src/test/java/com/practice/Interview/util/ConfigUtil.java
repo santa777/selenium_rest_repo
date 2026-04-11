@@ -15,10 +15,14 @@ public class ConfigUtil {
 				env = "Production";
 			
 			String configFile = env.equals("Production") ? "config-prod.properties" : "config.properties";
-			FileInputStream fileDir = new FileInputStream(System.getProperty("user.dir")
-					+ "\\src\\test\\java\\com\\practice\\Interview\\qa\\config\\" + configFile);
-			System.out.println("Path of th directory" + System.getProperty("user.dir")
-					+ "\\src\\test\\java\\com\\practice\\Interview\\qa\\config\\" + configFile);
+			String path = System.getProperty("user.dir") 
+                  + "/src/test/java/com/practice/Interview/qa/config/" 
+                  + configFile;
+				  System.out.println("Path of the directory: " + path);
+			
+			// System.out.println("Path of th directory" + System.getProperty("user.dir")
+			// 		+ "\\src\\test\\java\\com\\practice\\Interview\\qa\\config\\" + configFile);
+			FileInputStream fileDir = new FileInputStream(path);
 			properties.load(fileDir);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
