@@ -23,26 +23,46 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      # STEP 1: Execute Tests (No history prep needed)
+      # STEP 1: Download existing history from gh-pages
+      - name: Load Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages-dir # Download into a separate folder
+
+      # STEP 2: Copy history to the results folder so Allure sees it
+      - name: Prepare Allure results
+        run: |
+          mkdir -p target/allure-results
+          if [ -d "gh-pages-dir/history" ]; then
+            cp -r gh-pages-dir/history target/allure-results/
+          fi
+
+      # STEP 3: Execute Tests (Ensure paths use / and not \\)
       - name: Execute Tests
         run: mvn clean test -DtestNgFile=testng2.xml
         continue-on-error: true
 
-      # STEP 2: Generate Report (Standalone)
+      # STEP 4: Generate Report (This merges new results with old history)
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
         if: always()
         with:
           allure_results: target/allure-results
+          gh_pages: gh-pages
           allure_version: 2.30.0
           allure_report: allure-report
+          allure_history: allure-history
+          keep_reports: 20 
 
-      # STEP 3: Deploy (Overwrites the site every time)
+      # STEP 5: Deploy (Remove force_orphan so it appends instead of wipes)
       - name: Deploy to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-report  # Point directly to report, not history folder
-          force_orphan: true          # This wipes the branch history and keeps it clean
+          publish_dir: allure-history
+          # force_orphan: false (Default is false, which keeps history)

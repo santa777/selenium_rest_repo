@@ -8,7 +8,6 @@
     <artifactId>SeleniumMavenTests</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SeleniumMavenTests</name>
-    <url>http://www.example.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -17,6 +16,7 @@
         <maven.compiler.version>3.11.0</maven.compiler.version>
         <maven.surefire.version>3.2.5</maven.surefire.version>
         <aspectj.version>1.9.21</aspectj.version>
+        <allure.version>2.25.0</allure.version>
     </properties>
 
     <dependencies>
@@ -25,26 +25,36 @@
             <artifactId>selenium-java</artifactId>
             <version>4.18.1</version>
         </dependency>
+        
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.9.0</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>2.0.9</version>
-        </dependency>
+
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>5.5.6</version>
         </dependency>
+
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.25.0</version>
+            <version>${allure.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.9</version>
         </dependency>
     </dependencies>
 
@@ -55,10 +65,22 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
                 <configuration>
-                    <encoding>UTF-8</encoding>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.6.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>properties</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
@@ -70,16 +92,12 @@
                         <suiteXmlFile>${testNgFile}</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -javaagent:"${org.aspectj:aspectjweaver:jar}"
                     </argLine>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
