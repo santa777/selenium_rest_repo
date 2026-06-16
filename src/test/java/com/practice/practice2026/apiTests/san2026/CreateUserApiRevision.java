@@ -33,12 +33,12 @@ public class CreateUserApiRevision {
     private void createUserTest() {
         emailId = getEmailid();
         User userInfo = new User("Api Automation", "male", "emailid", "active");
-        String jsonBody = "{\n"
-                + "    \"name\": \"Api Automation\",\n"
-                + "    \"gender\": \"male\",\n"
-                + "    \"email\": \"" + emailId + "\",\n"
-                + "    \"status\": \"active\"    \n"
-                + "}";
+       String jsonBody = "{"
+        + "\"name\": \"Api Automation\","
+        + "\"gender\": \"male\","
+        + "\"email\": \"" + emailId + "\","
+        + "\"status\": \"active\""
+        + "}";
         userId = RestAssured
                 .given()
                     .contentType(ContentType.JSON)
