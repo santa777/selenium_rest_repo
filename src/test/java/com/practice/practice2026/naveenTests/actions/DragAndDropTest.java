@@ -36,7 +36,8 @@ public class DragAndDropTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         // Solution 1 : dragAndDrop
-        actions.dragAndDrop(source, target).perform();
+        Action action = actions.dragAndDrop(source, target).build();
+        action.perform();
         drageAndDropSuccessMessage = driver.findElement(By.xpath("//p[text()='Dropped!']"));
         softAssert.assertTrue(drageAndDropSuccessMessage.isDisplayed(), "Dropped element is not displayed during Solution1");
         softAssert.assertAll();
